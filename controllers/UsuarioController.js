@@ -1,6 +1,7 @@
 var bcrypt = require('bcryptjs');
 const models = require('../models');
 const token = require('../services/token');
+const permisos = require('./permisos.json');
 
 
 module.exports = {
@@ -16,9 +17,8 @@ module.exports = {
                 let match = await bcrypt.compare(req.body.password, user.password);
 
                 if (match) {
-                    
-                    let tokenReturn = await token.encode(user.id, user.rol, user.nombre, user.email);
-                    
+                   
+                    let tokenReturn = await token.encode(user.id, user.rol, user.nombre, user.email,permisos[user.rol]);
                     res.status(200).json({
                         user,
                         tokenReturn
@@ -86,7 +86,7 @@ module.exports = {
             next(e);
         }
     },
-   
+
     update: async (req, res, next) => {
         try {
             let pas = req.body.password;
@@ -159,4 +159,3 @@ module.exports = {
         }
     }
 }
-

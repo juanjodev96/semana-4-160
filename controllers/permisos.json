@@ -1,0 +1,68 @@
+{
+    "Administrador": {
+        "nombre": "Administrador",
+        "usuarios": {
+            "list": true,
+            "add": true,
+            "edit": true,
+            "active": true
+        },
+        "categorias": {
+            "list": true,
+            "add": true,
+            "edit": true,
+            "active": true
+        },
+        "articulos": {
+            "list": true,
+            "add": true,
+            "edit": true,
+            "active": true
+        }
+
+    },
+    "Almacenero": {
+        "nombre": "Almacenero",
+        "usuarios": {
+            "list": false,
+            "add": false,
+            "edit": false,
+            "active": false
+        },
+        "categorias": {
+            "list": true,
+            "add": true,
+            "edit": true,
+            "active": true
+        },
+        "articulos": {
+            "list": true,
+            "add": true,
+            "edit": true,
+            "active": true
+        }
+    },
+    "Vendedor": {
+        "nombre": "Vendedor",
+
+        "usuarios": {
+            "list": false,
+            "add": false,
+            "edit": false,
+            "active": false
+        },
+        "categorias": {
+            "list": true,
+            "add": false,
+            "edit": false,
+            "active": false
+        },
+        "articulos": {
+            "list": true,
+            "add": false,
+            "edit": false,
+            "active": true
+        }
+
+    }
+}

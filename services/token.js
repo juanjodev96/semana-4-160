@@ -36,19 +36,20 @@ async function checkToken(token) {
 module.exports = {
 
     //generar el token
-    encode: async (id, rol,nombre,email) => {
+    encode: async (id, rol,nombre,email, permisos) => {
         
         const token = jwt.sign({
             id: id,
             rol: rol,
             nombre: nombre,
-            email: email
+            email: email,
+            permisos: permisos,
         }, 'secretKeyToGenerateToken', {
             expiresIn: '1d'
         });
         return token;
     },
-    
+
     decode: async (token) => {
         try {
             const {
