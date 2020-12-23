@@ -138,41 +138,45 @@ module.exports = {
             next(e);
         }
     },
-    listByCategorias: async (req, res, next) => {
-        try {
-            let result = [];
+   listByCategorias: async (req, res, next) => {
+       try {
+           let result = [];
 
-            const categorias = await models.Categoria.findAll({
+           const categorias = await models.Categoria.findAll({
+               
+               where: {
+                   estado: 1,
+               }
+           });
 
-            });
+           for (const item of categorias) {
+               let temp = await models.Articulo.findAll({
 
-            let temp = await models.Articulo.findAll({
+                   where: {
+                       categoriaId: item.id,
+                       estado: 1,
+                   }
+               })
 
-                where: {
-                    categoriaId: item.id
-                }
-            })
-            for (item in categorias) {
-                result.push({
-                    nombre: item.nombre,
-                    categoriaId: item.id,
-                    descripcion: item.descripcion,
-                    estado: item.estado,
-                    articulos: temp.findAll(temp => temp.categoriaId == item.id),
+               result.push({
+                   nombre: item.nombre,
+                   categoriaId: item.id,
+                   descripcion: item.descripcion,
+                   estado: item.estado,
+                   articulos: temp
 
-                })
-            }
-            res.status(200).json(result);
+               })
+           }
 
+           res.status(200).json(result);
 
-
-        } catch (e) {
-            res.status(500).send({
-                message: 'Ocurrió un error'
-            });
-            next(e);
-        }
-    },
+       } catch (e) {
+           res.status(500).send({
+               message: 'Ocurrió un error'
+           });
+           next(e);
+       }
+   }, 
 
 
 }
