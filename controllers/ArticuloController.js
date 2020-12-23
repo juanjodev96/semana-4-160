@@ -143,28 +143,28 @@ module.exports = {
             let result = [];
 
             const categorias = await models.Categoria.findAll({
-                attributes: ['id', 'nombre', 'descripcion', 'estado']
+
             });
 
-            for (const item of categorias) {
-                let temp = await models.Articulo.findAll({
+            let temp = await models.Articulo.findAll({
 
-                    where: {
-                        categoriaId: item.id
-                    }
-                })
-
+                where: {
+                    categoriaId: item.id
+                }
+            })
+            for (item in categorias) {
                 result.push({
                     nombre: item.nombre,
                     categoriaId: item.id,
                     descripcion: item.descripcion,
                     estado: item.estado,
-                    articulos: temp
+                    articulos: temp.findAll(temp => temp.categoriaId == item.id),
 
                 })
             }
-
             res.status(200).json(result);
+
+
 
         } catch (e) {
             res.status(500).send({
