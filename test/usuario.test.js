@@ -1,7 +1,7 @@
 const request = require('supertest')
 const app = require('../index')
 
-describe('Categoria Endpoints', () => {
+describe('usuarios Endpoints', () => {
     var token;
 
     beforeAll((done) => {
@@ -18,41 +18,45 @@ describe('Categoria Endpoints', () => {
                 done();
             });
     });
-    it('listas de categoria', async() => {
+    it('listas de usuarios', async() => {
         const res = await request(app)
-            .get('/api/categoria/list')
+            .get('/api/usuario/list')
             .set('token', token)
         expect(res.statusCode).toEqual(200)
     })
 
-    it('agregar un nuevo categoria', async() => {
+    it('agregar un nuevo usuarios', async() => {
         const res = await request(app)
-            .post('/api/categoria/add')
+            .post('/api/usuario/add')
             .set('token', token)
             .send({
-                nombre: 'categirua_test',
-                descripcion: 'lorem limpsus',
+                rol: 'Administrador',
+                nombre: 'Nombre_prueba',
+                password: 'micontraseña',
+                email: 'prueba3@gmail.com',
+                estado: 1
             })
         expect(res.statusCode).toEqual(200)
     })
 
-    it('update categoria', async() => {
+    it('update usuario', async() => {
         const res = await request(app)
-            .put('/api/categoria/update')
+            .put('/api/usuario/update')
             .set('token', token)
             .send({
-                nombre: 'articulo_test_update',
-                descripcion: 'lorem limpsus update',
-                codigo: '22225',
+                nombre: 'nombre_update',
+                rol: 'Administrador',
+                password: 'micontraseña',
+                email: 'prueba@gmail.com',
                 id: 1
 
             })
         expect(res.statusCode).toEqual(200)
     })
 
-    it('deactivate categoria', async() => {
+    it('deactivate usuario', async() => {
         const res = await request(app)
-            .put('/api/categoria/activate')
+            .put('/api/usuario/activate')
             .set('token', token)
             .send({
                 id: 1
@@ -61,9 +65,9 @@ describe('Categoria Endpoints', () => {
         expect(res.statusCode).toEqual(200)
     })
 
-    it('activate categoria', async() => {
+    it('activate usuario', async() => {
         const res = await request(app)
-            .put('/api/categoria/deactivate')
+            .put('/api/usuario/deactivate')
             .set('token', token)
             .send({
                 id: 1,

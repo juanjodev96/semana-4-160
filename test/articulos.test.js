@@ -15,6 +15,7 @@ describe('Articulos Endpoints', () => {
             .end((err, response) => {
                 var result = JSON.parse(response.text);
                 token = result.tokenReturn;
+                console.log(token)
                 done();
             });
     });
@@ -33,7 +34,8 @@ describe('Articulos Endpoints', () => {
                 nombre: 'articulo_test',
                 descripcion: 'lorem limpsus',
                 codigo: '2222',
-                estado: 1,
+                precio_venta: 2525,
+                stock: 25,
                 categoriaId: 1,
 
             })

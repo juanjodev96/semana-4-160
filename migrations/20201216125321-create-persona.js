@@ -1,38 +1,36 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Articulos', {
+    await queryInterface.createTable('Personas', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      codigo: {
+      tipo_persona: {
         type: Sequelize.STRING
       },
       nombre: {
         type: Sequelize.STRING
       },
-      descripcion: {
+      tipo_documento: {
         type: Sequelize.STRING
       },
-      precio_venta: {
-        type: Sequelize.INTEGER
+      num_documento: {
+        type: Sequelize.STRING
       },
-      stock: {
-        type: Sequelize.INTEGER
+      direccion: {
+        type: Sequelize.STRING
+      },
+      telefono: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
       },
       estado: {
         type: Sequelize.INTEGER
-      },
-      categoriaId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { // User belongsTo Company 1:1
-          model: 'Categoria',
-          key: 'id'
-        }
       },
       createdAt: {
         allowNull: false,
@@ -45,6 +43,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Articulos');
+    await queryInterface.dropTable('Personas');
   }
 };

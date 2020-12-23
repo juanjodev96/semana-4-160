@@ -11,7 +11,7 @@ async function checkToken(token) {
     } catch (e) {
         return false;
     }
-
+    
     const user = await models.Usuario.findOne({
         where: {
             id: id,
@@ -36,8 +36,8 @@ async function checkToken(token) {
 module.exports = {
 
     //generar el token
-    encode: async (id, rol, nombre, email) => {
-
+    encode: async (id, rol,nombre,email) => {
+        
         const token = jwt.sign({
             id: id,
             rol: rol,
@@ -48,7 +48,7 @@ module.exports = {
         });
         return token;
     },
-    //permite decodificar el token
+    
     decode: async (token) => {
         try {
             const {

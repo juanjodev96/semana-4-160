@@ -1,7 +1,6 @@
 var bcrypt = require('bcryptjs');
 const models = require('../models');
 const token = require('../services/token');
-const allPermisos = require('../config/permisos');
 
 
 module.exports = {
@@ -17,9 +16,9 @@ module.exports = {
                 let match = await bcrypt.compare(req.body.password, user.password);
 
                 if (match) {
-                    let permisos = allPermisos[user.rol]
-                    let tokenReturn = await token.encode(user.id, permisos);
-
+                    
+                    let tokenReturn = await token.encode(user.id, user.rol, user.nombre, user.email);
+                    
                     res.status(200).json({
                         user,
                         tokenReturn
@@ -46,7 +45,6 @@ module.exports = {
     add: async (req, res, next) => {
         try {
             req.body.password = await bcrypt.hash(req.body.password, 10);
-            /* console.log(req.body); */
             const reg = await models.Usuario.create(req.body);
             res.status(200).json(reg);
         } catch (e) {
@@ -88,42 +86,7 @@ module.exports = {
             next(e);
         }
     },
-
-    
-    listTypeRoles: async (req, res, next) => {
-        try {
-
-            res.status(200).send([
-                'Administrador',
-                'Almacenero',
-                'Vendedor',
-            ]);
-
-        } catch (e) {
-            res.status(500).send({
-                message: 'Error -> ' + e
-            });
-            next(e);
-        }
-    },
-    listTypeDocumento: async (req, res, next) => {
-        try {
-
-            res.status(200).send([
-                'Cédula de ciudadanía',
-                'Tarjeta de identidad',
-                'Cédula de extranjería',
-                'Pasaport',
-                'Registro Civil'
-            ]);
-
-        } catch (e) {
-            res.status(500).send({
-                message: 'Error -> ' + e
-            });
-            next(e);
-        }
-    },
+   
     update: async (req, res, next) => {
         try {
             let pas = req.body.password;
@@ -194,19 +157,6 @@ module.exports = {
             });
             next(e);
         }
-    },
-
-    describe: async (req, res, next) => {
-        try {
-            let valor = req.query.valor;
-            const reg = await models.Usuario.describe();
-            res.status(200).json(reg);
-
-        } catch (e) {
-            res.status(500).send({
-                message: 'Error -> ' + e
-            });
-            next(e);
-        }
     }
 }
+

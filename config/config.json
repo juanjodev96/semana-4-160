@@ -1,11 +1,11 @@
 {
-    "development": {
+   "development": {
         "username": "root",
         "password": null,
         "database": "proyectof_s4",
         "host": "127.0.0.1",
         "dialect": "mysql"
-    },
+    },  
     "test": {
         "dialect": "sqlite",
         "storage": "./database.sqlite3"
