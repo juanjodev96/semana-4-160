@@ -17,4 +17,7 @@ router.put('/deactivate', auth.verifyUsuario, usuarioController.deactivate);
 router.put('/activate', auth.verifyUsuario, usuarioController.activate);
 
 router.delete('/remove', auth.verifyUsuario, usuarioController.remove);
+
+router.get('/listTypeDocumento', auth.verifyUsuario, usuarioController.listTypeDocumento);
+router.get('/listTypeRoles', auth.verifyUsuario, usuarioController.listTypeRoles);
 module.exports = router;

@@ -76,7 +76,7 @@ module.exports = {
     },
     update: async (req, res, next) => {
         try {
-            
+
             const reg = await models.Articulo.update(req.body, {
                 where: {
                     id: req.body.id
@@ -137,5 +137,42 @@ module.exports = {
             });
             next(e);
         }
-    }
+    },
+    listByCategorias: async (req, res, next) => {
+        try {
+            let result = [];
+
+            const categorias = await models.Categoria.findAll({
+                attributes: ['id', 'nombre', 'descripcion', 'estado']
+            });
+
+            for (const item of categorias) {
+                let temp = await models.Articulo.findAll({
+
+                    where: {
+                        categoriaId: item.id
+                    }
+                })
+
+                result.push({
+                    nombre: item.nombre,
+                    categoriaId: item.id,
+                    descripcion: item.descripcion,
+                    estado: item.estado,
+                    articulos: temp
+
+                })
+            }
+
+            res.status(200).json(result);
+
+        } catch (e) {
+            res.status(500).send({
+                message: 'Ocurrió un error'
+            });
+            next(e);
+        }
+    },
+
+
 }
