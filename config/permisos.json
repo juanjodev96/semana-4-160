@@ -1,0 +1,81 @@
+{
+    "Administrador": {
+                    "usuarios": {
+                        "list": true,
+                        "add": true,
+                        "edit": true,
+                        "active": true
+                    },
+                    "categorias": {
+                        "list": true,
+                        "add": true,
+                        "edit": true,
+                        "active": true
+                    },
+                    "articulos": {
+                        "list": true,
+                        "add": true,
+                        "edit": true,
+                        "active": true
+                    },
+                    "alertas": {
+                        "list": true,
+                        "add": false,
+                        "edit": true,
+                        "active": true
+                    }
+
+                },
+                "Almacenero": {
+                    "usuarios": {
+                        "list": false,
+                        "add": false,
+                        "edit": false,
+                        "active": false
+                    },
+                    "categorias": {
+                        "list": true,
+                        "add": true,
+                        "edit": true,
+                        "active": true
+                    },
+                    "articulos": {
+                        "list": true,
+                        "add": true,
+                        "edit": true,
+                        "active": true
+                    },
+                    "alertas": {
+                        "list": true,
+                        "add": false,
+                        "edit": true,
+                        "active": true
+                    }
+                },
+                "Vendedor": {
+                    "usuarios": {
+                        "list": false,
+                        "add": false,
+                        "edit": false,
+                        "active": false
+                    },
+                    "categorias": {
+                        "list": true,
+                        "add": false,
+                        "edit": false,
+                        "active": false
+                    },
+                    "articulos": {
+                        "list": true,
+                        "add": false,
+                        "edit": false,
+                        "active": true
+                    },
+                    "alertas": {
+                        "list": false,
+                        "add": false,
+                        "edit": false,
+                        "active": false
+                    }
+                }
+            }
